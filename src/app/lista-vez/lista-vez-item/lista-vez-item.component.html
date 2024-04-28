@@ -1,0 +1,9 @@
+<div class="item">
+  <p-button [icon]="iconLeftButton" [rounded]="true" severity="warning" (click)="altStatus(idLeftButton)" *ngIf="statusDisponivel"></p-button>
+  <div class="item-texto">
+    <p>{{ listaVezItem.nome_atendente }}</p>
+    <p-badge *ngIf="badgeVisible"  [value]="descMotivo" severity="danger"></p-badge>
+  </div>
+  <p-button [icon]="iconRightButton" [rounded]="true" severity="success" (click)="altStatus(idRightButton)"></p-button>
+</div>
+

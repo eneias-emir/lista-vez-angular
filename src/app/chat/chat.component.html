@@ -1,0 +1,9 @@
+<div>
+  <div *ngFor="let message of messages">
+    {{ message }}
+  </div>
+  <input type="text" [(ngModel)]="messageToSend" placeholder="Type your message here...">
+  <button (click)="sendMessage()">Send</button>
+  <p> {{ statusConn }} </p>
+  <button (click)="connectSubject()">reconnect subject</button>
+</div>

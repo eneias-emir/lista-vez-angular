@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+
+  --height: 3rem;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color:  #ccc;
+  border-radius: 8px;
+
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 2px;
+
+  background-color: white;
+  margin: 4px;
+  padding: 3px;
+}
+
+.item-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-texto p {
+  margin-bottom: 0.5rem;
+}
+
+.pcl {
+  background-color: aqua;
+}

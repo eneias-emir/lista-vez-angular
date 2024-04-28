@@ -1,0 +1,10 @@
+<div class="lista">
+  <div class="titulo">{{ tituloLista }}</div>
+
+  <app-lista-vez-item
+    *ngFor="let item of listaVez"
+      [listaVezItem]="item" [statusDisponivel]=true (altStatusEvent)="altStatusListEvent($event)">
+  </app-lista-vez-item>
+
+</div>
+

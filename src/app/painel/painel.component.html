@@ -1,0 +1,43 @@
+<div>
+  <p-sidebar [(visible)]="sidebarAtendenteVisible" [style]="{'width':'24rem'}">
+    <h3>Atendentes ativos</h3>
+
+    <p-listbox [options]="listaAtivos" [(ngModel)]="atendenteSelecionado" optionLabel="nome_atendente" [style]="{'width':'19rem'}" [listStyle]="{'max-height': '320px'}"></p-listbox>
+
+    <div class="botoes_painel">
+      <p-button label="Selecionar" icon="pi pi-check" (click)="selecionarAtendente()"></p-button>
+      <p-button label="Desistir" severity="warning" icon="pi pi-times" (click)="desistirSelecionarAtendente()"></p-button>
+    </div>
+    <p-messages [(value)]="messagesDialog" [enableService]="false" [closable]="false"></p-messages>
+  </p-sidebar>
+
+  <p-sidebar [(visible)]="sidebarMotivoVisible" [style]="{'width':'24rem'}">
+    <h2>Motivo</h2>
+
+    <p-listbox [options]="listaMotivosFiltrados" [(ngModel)]="motivoSelecionado" optionLabel="descricao" [style]="{'width':'19rem'}" [listStyle]="{'max-height': '320px'}"></p-listbox>
+
+    <div class="botoes_painel">
+      <p-button label="Gravar" icon="pi pi-check" (click)="gravarMotivo()"></p-button>
+      <p-button label="Desistir" severity="warning" icon="pi pi-times" (click)="desistirMotivo()"></p-button>
+    </div>
+    <p-messages [(value)]="messagesDialog" [enableService]="false" [closable]="false"></p-messages>
+  </p-sidebar>
+
+
+  <p-toolbar>
+    <div class="p-toolbar-group-start gap-3">
+        <button pButton icon="pi pi-plus" class="mr-2" (click)="getAtendentesAtivos()"  style="margin-right:10px"></button>
+        <button pButton icon="pi pi-refresh" class="mr-2" (click)="getListaVez()"></button>
+    </div>
+    <div class="p-toolbar-group-center">
+        <img src="assets/layla.png" />
+    </div>
+  </p-toolbar>
+
+  <div class="box1">
+    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaDisponivel" [listaVez]="(listaDisponiveis)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
+    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaEmAtendimento" [listaVez]="(listaEmAtendimento)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
+    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaOcupado" [listaVez]="(listaIndisponiveis)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
+  </div>
+</div>
+
