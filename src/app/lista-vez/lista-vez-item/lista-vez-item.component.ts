@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ButtonModule } from 'primeng/button';
 import { BadgeModule } from 'primeng/badge';
+import { ChipModule } from 'primeng/chip';
 
 import { ListaVezItem } from './lista-vez-item'
 import { StatusListaVez } from '../StatusListaVez';
@@ -16,7 +17,7 @@ const BUTTON_ICON_LIST = {
 @Component({
   selector: 'app-lista-vez-item',
   standalone: true,
-  imports: [CommonModule, ButtonModule, BadgeModule],
+  imports: [CommonModule, ButtonModule, BadgeModule, ChipModule],
   templateUrl: './lista-vez-item.component.html',
   styleUrl: './lista-vez-item.component.css'
 })

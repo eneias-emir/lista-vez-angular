@@ -1,9 +1,11 @@
+import { environment } from '../environments/environment';
+
 export const config = {
   webSocketServer: {
-    url: 'ws://localhost:8000/ws',
+    url: environment.webSocketServer,
     retryCount: 1000,
     retryDelay: 5000
   },
-  httpServer: 'http://127.0.0.1:8000'
-
+  httpServer: 'http://127.0.0.1:8000',
+  apiUrl: environment.apiUrl,
 }

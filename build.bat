@@ -1,1 +1,1 @@
-ng build --base-href site/
+ng build --base-href /lista-vez/ --configuration=production

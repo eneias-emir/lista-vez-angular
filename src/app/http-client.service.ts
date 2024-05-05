@@ -14,7 +14,7 @@ export class HttpClientService {
 
   //baseUrl: string = 'http://localhost:8000';
   //baseUrl: string = environment.httpServer;
-  baseUrl: string = config.httpServer;
+  baseUrl: string = config.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
 

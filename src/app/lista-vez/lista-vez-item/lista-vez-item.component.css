@@ -28,6 +28,24 @@
   margin-bottom: 0.5rem;
 }
 
+.txt-hora {
+  flex: 1;
+  font-size: 13px;
+  font-style: italic;
+  color: gray;
+  margin-top: 5px;
+  margin-right: 1rem;
+  --padding-top: 1px;
+
+  --border: 1px solid blue;
+  height: 1rem;
+}
+
+.lin-2 {
+  display: flex;
+  align-items: center;
+}
+
 .pcl {
   background-color: aqua;
 }
