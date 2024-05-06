@@ -18,9 +18,8 @@ export enum StatusSocket {
 })
 export class WebSocketService {
   private socket$: WebSocketSubject<any>;
-  //private readonly WS_URL = 'ws://localhost:8000/ws'; // Coloque a URL do seu servidor WebSocket aqui
-  private readonly WS_URL = config.webSocketServer.url;
 
+  private readonly WS_URL = config.webSocketServer.url;
 
   private socketSubject: Subject<StatusSocket> = new Subject();
   //connChangeEvent$: Observable<any> = this.socketSubject.asObservable();

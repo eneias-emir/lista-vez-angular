@@ -7,4 +7,5 @@ export interface ListaVezItem {
   id_novo_status?: number;
   venda_efetuada?: string;
   desc_motivo?: string;
+  hora?: string;
 }
