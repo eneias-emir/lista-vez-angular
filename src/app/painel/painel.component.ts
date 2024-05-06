@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { ListboxModule } from 'primeng/listbox';
 import { MessagesModule } from 'primeng/messages';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Message } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
@@ -25,7 +26,8 @@ interface RegAtendente {
 @Component({
   selector: 'app-painel',
   standalone: true,
-  imports: [CommonModule, ListaVezComponent, ToolbarModule, ButtonModule, SidebarModule, ListboxModule, FormsModule, MessagesModule],
+  imports: [CommonModule, ListaVezComponent, ToolbarModule, ButtonModule,
+            SidebarModule, ListboxModule, FormsModule, MessagesModule, InputTextareaModule],
   templateUrl: './painel.component.html',
   styleUrl: './painel.component.css'
 })
@@ -40,6 +42,7 @@ export class PainelComponent implements OnInit {
   messages: string[] = [];
   messageToSend = new WsMessage(Comando.AddListaVez);
   statusConn: string = 'inactive';
+  observacao: string = '';
 
   tituloListaDisponivel = 'Disponíveis';
   tituloListaEmAtendimento = 'Em atendimento';
@@ -85,7 +88,7 @@ export class PainelComponent implements OnInit {
     if (this.motivoSelecionado) {
       this.messageToSend.comando = Comando.AltStatusListaVez;
       this.messageToSend.id_motivo = this.motivoSelecionado.id;
-      this.messageToSend.obs = 'teste';
+      this.messageToSend.obs = this.observacao;
       this.sendMessage();
 
       this.sidebarMotivoVisible = false;
@@ -197,6 +200,7 @@ export class PainelComponent implements OnInit {
 
   solicitarMotivoAltStatus(id_status: number) {
     this.listaMotivosFiltrados = this.listaMotivos.filter((motivo) => motivo.id_status == id_status);
+    this.observacao = '';
     this.sidebarMotivoVisible = true;
   }
 
@@ -213,7 +217,7 @@ export class PainelComponent implements OnInit {
     this.messageToSend.id_novo_status = $event.id_novo_status;
     this.messageToSend.id_motivo = 0;
     this.messageToSend.id_prevenda = 0;
-    this.messageToSend.obs = '';
+    this.messageToSend.obs = this.observacao;
     this.messageToSend.venda_efetuada = venda_efetuada;
 
     // se nao for necessario solicitar motivo, efetua a chamada de alteracao de status.

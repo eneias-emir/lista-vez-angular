@@ -16,6 +16,14 @@
 
     <p-listbox [options]="listaMotivosFiltrados" [(ngModel)]="motivoSelecionado" optionLabel="descricao" [style]="{'width':'19rem'}" [listStyle]="{'max-height': '320px'}"></p-listbox>
 
+    <textarea
+        rows="2"
+        cols="25"
+        pInputTextarea
+        [(ngModel)]="observacao"
+        [autoResize]="true">
+    </textarea>
+
     <div class="botoes_painel">
       <p-button label="Gravar" icon="pi pi-check" (click)="gravarMotivo()"></p-button>
       <p-button label="Desistir" severity="warning" icon="pi pi-times" (click)="desistirMotivo()"></p-button>
