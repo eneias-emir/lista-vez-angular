@@ -37,15 +37,24 @@
         <button pButton icon="pi pi-plus" class="mr-2" (click)="getAtendentesAtivos()"  style="margin-right:10px"></button>
         <button pButton icon="pi pi-refresh" class="mr-2" (click)="getListaVez()"></button>
     </div>
+
+    <div>
+      <p-selectButton
+          [options]="tipoAtendenteStateOptions"
+          [(ngModel)]="tipoAtendenteFiltro"
+          optionLabel="label"
+          optionValue="value" />
+    </div>
+
     <div class="p-toolbar-group-center">
         <img src="assets/layla.png" />
     </div>
   </p-toolbar>
 
   <div class="box1">
-    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaDisponivel" [listaVez]="(listaDisponiveis)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
-    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaEmAtendimento" [listaVez]="(listaEmAtendimento)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
-    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaOcupado" [listaVez]="(listaIndisponiveis)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
+    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaDisponivel" [listaVez]="listaAtendentesTipoFiltro(listaDisponiveis)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
+    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaEmAtendimento" [listaVez]="listaAtendentesTipoFiltro(listaEmAtendimento)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
+    <app-lista-vez class="classe_lista" [tituloLista]="tituloListaOcupado" [listaVez]="listaAtendentesTipoFiltro(listaIndisponiveis)" (altStatusMain)="altStatusItemLista($event)"></app-lista-vez>
   </div>
 </div>
 

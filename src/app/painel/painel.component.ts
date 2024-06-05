@@ -9,6 +9,7 @@ import { MessagesModule } from 'primeng/messages';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Message } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 import { ListaVezItem } from '../lista-vez/lista-vez-item/lista-vez-item'
 import { ListaVezComponent } from '../lista-vez/lista-vez.component'
@@ -23,10 +24,15 @@ interface RegAtendente {
   nome_atendente: string;
 }
 
+enum TipoAtendente {
+  tipoCalcado = '001',
+  tipoConfeccao = '002'
+}
+
 @Component({
   selector: 'app-painel',
   standalone: true,
-  imports: [CommonModule, ListaVezComponent, ToolbarModule, ButtonModule,
+  imports: [CommonModule, ListaVezComponent, ToolbarModule, ButtonModule, SelectButtonModule,
             SidebarModule, ListboxModule, FormsModule, MessagesModule, InputTextareaModule],
   templateUrl: './painel.component.html',
   styleUrl: './painel.component.css'
@@ -55,6 +61,9 @@ export class PainelComponent implements OnInit {
   listaDisponiveis: ListaVezItem[] = [];
   listaIndisponiveis: ListaVezItem[] = [];
   listaEmAtendimento: ListaVezItem[] = [];
+
+  tipoAtendenteFiltro = TipoAtendente.tipoCalcado;
+  tipoAtendenteStateOptions: any[] = [{ label: 'CA', value: TipoAtendente.tipoCalcado },{ label: 'CF', value: TipoAtendente.tipoConfeccao }];
 
   constructor(private webSocketService: WebSocketService, private httpClientService: HttpClientService) {
   }
@@ -117,15 +126,6 @@ export class PainelComponent implements OnInit {
     }
   }
 
-  /*
-  informarMotivo() {
-    this.listaMotivosFiltrados = this.listaMotivos.filter((motivo) => motivo.id_status == 2);
-
-    this.motivoSelecionado = undefined;
-    this.sidebarMotivoVisible = true;
-  }
-  */
-
   getAtendentesAtivos() {
     this.messageToSend.comando = Comando.GetAtendenteAtivo;
     this.sendMessage();
@@ -135,6 +135,10 @@ export class PainelComponent implements OnInit {
   getListaVez() {
     this.messageToSend.comando = Comando.GetListaVez;
     this.sendMessage();
+  }
+
+  listaAtendentesTipoFiltro(lista: Array<ListaVezItem>): Array<ListaVezItem> {
+    return lista.filter(item => item.tipo_atendente === this.tipoAtendenteFiltro);
   }
 
   addListaVez(codAtendente: number) {
@@ -199,6 +203,7 @@ export class PainelComponent implements OnInit {
   }
 
   solicitarMotivoAltStatus(id_status: number) {
+    this.motivoSelecionado = null;
     this.listaMotivosFiltrados = this.listaMotivos.filter((motivo) => motivo.id_status == id_status);
     this.observacao = '';
     this.sidebarMotivoVisible = true;
